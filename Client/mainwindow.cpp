@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "clienttcpsocket.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
@@ -48,9 +49,18 @@ void MainWindow::setConnectInputsEnabled(bool val){
     ui->input_nickname->setEnabled(val);
     ui->input_server->setEnabled(val);
 }
-void MainWindow::on_readyRead(){
-    QString message = QString::fromStdString(socket->readAll().toStdString());
-    ui->txt_allmsg->append(message);
+void MainWindow::on_readyRead() {
+    QByteArray data = socket->readAll();
+    QDataStream stream(data);
+    QString nickname;
+    QByteArray encryptedMessage;
+    stream >> nickname >> encryptedMessage;
+    if (stream.status() == QDataStream::Ok) {
+        QString key = "PH070N-L1V3-CH47";
+        QByteArray decrypted = ClientTcpSocket::decryptMessage(encryptedMessage, key);
+        QString displayMsg = "[" + nickname + "]: " + QString::fromUtf8(decrypted);
+        ui->txt_allmsg->append(displayMsg);
+    } else qDebug() << "Failed to parse message from server";
 }
 void MainWindow::setChatControlsEnabled(bool val){
     ui->txt_tosend->setEnabled(val);
@@ -64,6 +74,8 @@ void MainWindow::setStatus(QString status, QColor color){
 }
 void MainWindow::on_btn_send_clicked(){
     QString toSend = ui->txt_tosend->toPlainText();
-    socket->write(toSend.toUtf8());
+    QString key = "PH070N-L1V3-CH47";
+    QByteArray encryptedMessage = ClientTcpSocket::encryptMessage(toSend, key);
+    socket->write(encryptedMessage);
     ui->txt_tosend->clear();
 }

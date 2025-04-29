@@ -110,6 +110,9 @@
       <pointsize>15</pointsize>
      </font>
     </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhNone</set>
+    </property>
     <property name="placeholderText">
      <string>Enter messages here...</string>
     </property>

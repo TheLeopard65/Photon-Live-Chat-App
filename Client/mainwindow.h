@@ -13,11 +13,9 @@ public slots:
     void on_connected();
     void on_disconnected();
     void on_readyRead();
-
 private slots:
     void on_btn_connect_clicked();
     void on_btn_send_clicked();
-
 private:
     Ui::MainWindow *ui;
     quint16 defaultPort = 7986;

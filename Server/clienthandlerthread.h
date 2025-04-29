@@ -15,18 +15,16 @@ public:
     QHostAddress getPeerAddress();
     QString getNickname();
     void setNickname(QString newName);
-
+    static QByteArray decryptMessage(const QByteArray &encryptedMessage, const QString &key);
 signals:
     void error(QTcpSocket::SocketError error);
     void messageFromClient(long long id, QByteArray data);
     void finished(long long id);
     void messageToSocket(QByteArray data);
-
 public slots:
     void readyRead();
     void disconnected();
     void on_messageToAll(QByteArray data);
-
 private:
     QTcpSocket *socket;
     qintptr id;

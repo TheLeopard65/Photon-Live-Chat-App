@@ -6,7 +6,6 @@ class CustomTcpSocket : public QTcpSocket{
     Q_OBJECT
 public:
     CustomTcpSocket(QObject *parent = nullptr);
-
 public slots:
     void on_messageToSocket(QByteArray data);
 };

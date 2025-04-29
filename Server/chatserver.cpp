@@ -6,22 +6,22 @@ void ChatServer::start(){
     else qDebug() << "[#] Server ready and listening on port" << this->port;
 }
 void ChatServer::incomingConnection(qintptr handle){
-    // create new thread to handle client
     ClientHandlerThread *thread = new ClientHandlerThread(handle, this);
     handlers[handle] = thread;
-    // connect signals and slots
     connect(thread, SIGNAL(finished(long long)), this, SLOT(on_threadFinished(long long)));
     connect(thread, SIGNAL(messageFromClient(long long, QByteArray)), this, SLOT(on_messageFromClient(long long, QByteArray)));
     connect(this, SIGNAL(messageToAll(QByteArray)), thread, SLOT(on_messageToAll(QByteArray)));
     thread->start();
 }
-void ChatServer::on_messageFromClient(long long threadId, QByteArray data){
-    QString toSend = "[" + handlers[threadId]->getNickname() + "]#: ";
-    toSend += QString::fromStdString(data.toStdString());
-    emit messageToAll(toSend.toUtf8());
+void ChatServer::on_messageFromClient(long long threadId, QByteArray encryptedData) {
+    QString nickname = handlers[threadId]->getNickname();
+    QByteArray packet;
+    QDataStream stream(&packet, QIODevice::WriteOnly);
+    stream << nickname << encryptedData;
+    emit messageToAll(packet);
 }
 void ChatServer::on_threadFinished(long long threadId){
-    QString disconnectMessage = "\n**[#] " + handlers[threadId]->getNickname() + " has left the chat **\n";
+    QString disconnectMessage = "[#] " + handlers[threadId]->getNickname() + " has left the chat!";
     handlers.remove(threadId);
     emit messageToAll(disconnectMessage.toUtf8());
 }
