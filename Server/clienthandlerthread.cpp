@@ -22,7 +22,6 @@ void ClientHandlerThread::run(){
         emit error(socket->error());
         exit(1);
     }
-    qDebug() << "[#] Client #" << id << " has connected";
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()), Qt::DirectConnection);
     connect(socket, SIGNAL(disconnected()), this, SLOT(disconnected()));
     connect(this, SIGNAL(messageToSocket(QByteArray)), socket, SLOT(on_messageToSocket(QByteArray)));
@@ -33,11 +32,11 @@ void ClientHandlerThread::readyRead(){
     if(!nicknameReceived) {
         nickname = QString::fromStdString(data.toStdString());
         nicknameReceived = true;
+        emit clientReady(id);
     } else emit messageFromClient(id, data);
 }
 void ClientHandlerThread::disconnected(){
     socket->deleteLater();
-    qDebug() << "[#] Client #" << id << " has disconnected";
     emit finished(id);
     exit(0);
 }

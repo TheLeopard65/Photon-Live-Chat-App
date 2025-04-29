@@ -21,6 +21,8 @@ public slots:
     void readyRead();
 private:
     QTcpSocket *socket;
+signals:
+	void clientReady(qintptr id);
 };
 
 #endif // CLIENTTCPSOCKET_H

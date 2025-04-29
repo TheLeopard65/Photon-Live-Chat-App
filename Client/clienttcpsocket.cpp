@@ -44,7 +44,4 @@ void ClientTcpSocket::doConnect(QString host, quint16 port){
 void ClientTcpSocket::connected() { qDebug() << "Connected to server."; }
 void ClientTcpSocket::disconnected() { qDebug() << "Disconnected from server."; }
 void ClientTcpSocket::bytesWritten(qint64 bytes) { qDebug() << bytes << "bytes written."; }
-void ClientTcpSocket::readyRead() {
-    QByteArray data = socket->readAll();
-    qDebug() << "Data received:" << data;
-}
+void ClientTcpSocket::readyRead() { QByteArray data = socket->readAll(); }

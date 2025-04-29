@@ -2,9 +2,9 @@
 #include <QApplication>
 
 int main(int argc, char *argv[]){
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.setWindowTitle("PHOTON LIVE CHAT APP");
-    w.show();
-    return a.exec();
+    QApplication app(argc, argv);
+    MainWindow Photon_Client;
+    Photon_Client.setWindowTitle("PHOTON APP");
+    Photon_Client.show();
+    return app.exec();
 }

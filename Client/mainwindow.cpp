@@ -24,7 +24,7 @@ void MainWindow::on_btn_connect_clicked(){
         setStatus("CONNECTING...", Qt::yellow);
         socket->connectToHost(host, port);
         if(!socket->waitForConnected(1000)) {
-            setStatus("some error occured", Qt::red);
+            setStatus("ERROR", Qt::red);
             setConnectInputsEnabled(true);
             ui->btn_connect->setEnabled(true);
         }
@@ -51,16 +51,21 @@ void MainWindow::setConnectInputsEnabled(bool val){
 }
 void MainWindow::on_readyRead() {
     QByteArray data = socket->readAll();
-    QDataStream stream(data);
-    QString nickname;
-    QByteArray encryptedMessage;
-    stream >> nickname >> encryptedMessage;
-    if (stream.status() == QDataStream::Ok) {
-        QString key = "PH070N-L1V3-CH47";
-        QByteArray decrypted = ClientTcpSocket::decryptMessage(encryptedMessage, key);
-        QString displayMsg = "[" + nickname + "]: " + QString::fromUtf8(decrypted);
-        ui->txt_allmsg->append(displayMsg);
-    } else qDebug() << "Failed to parse message from server";
+    buffer.append(data);
+    QDataStream stream(&buffer, QIODevice::ReadOnly);
+    while (!stream.atEnd()) {
+        QString nickname;
+        QByteArray encryptedMessage;
+        stream.startTransaction();
+        stream >> nickname >> encryptedMessage;
+        if (stream.commitTransaction()) {
+            QString key = "PH070N-L1V3-CH47";
+            QByteArray decrypted = ClientTcpSocket::decryptMessage(encryptedMessage, key);
+            QString displayMsg = "[" + nickname + "]#: " + QString::fromUtf8(decrypted);
+            ui->txt_allmsg->append(displayMsg);
+            buffer = buffer.mid(stream.device()->pos());
+        } else break;
+    }
 }
 void MainWindow::setChatControlsEnabled(bool val){
     ui->txt_tosend->setEnabled(val);

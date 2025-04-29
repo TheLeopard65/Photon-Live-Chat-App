@@ -20,6 +20,7 @@ private:
     Ui::MainWindow *ui;
     quint16 defaultPort = 7986;
     QTcpSocket *socket;
+    QByteArray buffer;
     bool isConnected = false;
     void setConnectInputsEnabled(bool val);
     void setChatControlsEnabled(bool val);

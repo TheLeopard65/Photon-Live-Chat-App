@@ -10,13 +10,14 @@
 class ClientHandlerThread : public QThread{
     Q_OBJECT
 public:
+    static QByteArray decryptMessage(const QByteArray &encryptedMessage, const QString &key);
     explicit ClientHandlerThread(qintptr handle, QObject *parent = nullptr);
-    void run();
+    void setNickname(QString newName);
     QHostAddress getPeerAddress();
     QString getNickname();
-    void setNickname(QString newName);
-    static QByteArray decryptMessage(const QByteArray &encryptedMessage, const QString &key);
+    void run();
 signals:
+	void clientReady(long long id);
     void error(QTcpSocket::SocketError error);
     void messageFromClient(long long id, QByteArray data);
     void finished(long long id);

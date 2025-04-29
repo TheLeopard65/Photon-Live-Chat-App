@@ -2,8 +2,8 @@
 #include "chatserver.h"
 
 int main(int argc, char *argv[]){
-    QCoreApplication a(argc, argv);
-    ChatServer server;
-    server.start();
-    return a.exec();
+    QCoreApplication app(argc, argv);
+    ChatServer Photon_Server;
+    Photon_Server.start();
+    return app.exec();
 }
