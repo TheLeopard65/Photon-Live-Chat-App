@@ -4,9 +4,9 @@ ChatServer::ChatServer(QObject *parent) : QTcpServer(parent){}
 void ChatServer::start(){
     if(!this->listen(QHostAddress::Any, this->port)) qDebug() << "[#] Could not start server!";
     else {
-    	qDebug() << "[#] #################################### {#]" << QT::endl;
+    	qDebug() << "[#] #################################### {#]";
     	qDebug() << "[#] Server ready and listening on port" << this->port;
-    	qDebug() << "[#] #################################### {#]" << QT::endl;
+    	qDebug() << "[#] #################################### {#]";
     }
 }
 void ChatServer::incomingConnection(qintptr handle){

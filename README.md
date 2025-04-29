@@ -4,7 +4,7 @@
 ![Qt Version](https://img.shields.io/badge/Qt-5.15+-green.svg)
 ![OpenSSL](https://img.shields.io/badge/OpenSSL-1.1.1+-yellow.svg)
 
-A secure, real-time chat application designed to ensure privacy through robust end-to-end encryption, leveraging the power of the Qt framework for cross-platform GUI development. OpenSSL is integrated to handle secure communication protocols and cryptographic operations. The application supports instant messaging with a focus on user data protection and seamless performance. Its architecture is built to resist eavesdropping, ensuring confidentiality across all transmitted messages.
+A secure, real-time chat application designed to ensure privacy through robust end-to-end encryption, leveraging the power of Qt framework for cross-platform GUI development. OpenSSL is integrated to handle secure communication protocols & cryptographic operations. The application supports instant messaging with a focus on user data protection & seamless performance. Its architecture is built to resist eavesdropping, ensuring confidentiality across all transmitted messages.
 
 ## Features
 - **Secure Communication**: AES-128-CBC encryption for all messages
