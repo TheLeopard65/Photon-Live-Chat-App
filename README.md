@@ -4,7 +4,7 @@
 ![Qt Version](https://img.shields.io/badge/Qt-5.15+-green.svg)
 ![OpenSSL](https://img.shields.io/badge/OpenSSL-1.1.1+-yellow.svg)
 
-A secure, real-time chat application with end-to-end encryption built using Qt framework and OpenSSL.
+A secure, real-time chat application designed to ensure privacy through robust end-to-end encryption, leveraging the power of the Qt framework for cross-platform GUI development. OpenSSL is integrated to handle secure communication protocols and cryptographic operations. The application supports instant messaging with a focus on user data protection and seamless performance. Its architecture is built to resist eavesdropping, ensuring confidentiality across all transmitted messages.
 
 ## Features
 - **Secure Communication**: AES-128-CBC encryption for all messages
@@ -16,32 +16,22 @@ A secure, real-time chat application with end-to-end encryption built using Qt f
 
 ## Installation
 ### Prerequisites
-- Qt5 (>= 5.15)
+- Qt5 Library ( Version >= 5.15)
 - OpenSSL development libraries
-
-**Ubuntu/Debian:**
-```bash
-sudo apt install qt5-default libssl-dev
-```
 
 ### Build Instructions
 ```bash
-git clone https://github.com/TheLeopard65/Photon-Live-Chat-App.git
-cd Photon-Live-Chat-App
-qmake Photon-Compiler.pro
-make
+./install.sh
 ```
 
 ## Usage
 **Start Server:**
 ```bash
-cd Server
 ./Server
 ```
 
 **Start Client:**
 ```bash
-cd Client
 ./Client
 ```
 
@@ -58,7 +48,7 @@ Default Port: `7986`
 - Random IV generation for each message
 - Secure key derivation (hardcoded demo key)
 
-⚠️ **Security Note:** This implementation uses a hardcoded key for demonstration purposes. For production use:
+### **Security Note:** This implementation uses a hardcoded key for demonstration purposes. For production use:
 1. Implement proper key exchange protocol
 2. Use environment variables for key storage
 3. Consider using TLS for transport security
@@ -75,10 +65,12 @@ Default Port: `7986`
 │   ├── mainwindow.h
 │   ├── mainwindow.ui
 │   └── Makefile
+├── Install.sh
 ├── LICENSE
 ├── Makefile
 ├── Photon-Compiler.pro
 ├── README.md
+├── Requirements.txt
 └── Server
     ├── ChatRoom-server.pro
     ├── chatserver.cpp
@@ -90,7 +82,7 @@ Default Port: `7986`
     ├── main.cpp
     └── Makefile
 
-3 directories, 21 files
+3 directories, 23 files
 ```
 
 ## Technical Details
@@ -118,4 +110,4 @@ We welcome contributions! Please follow these steps:
 5. Open a Pull Request
 
 ## License
-Distributed under MIT License. See `LICENSE` for more information.
+Distributed under MIT License. See ![LICENSE](LICENSE) for more information.

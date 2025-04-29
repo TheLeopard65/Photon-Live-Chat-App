@@ -1,0 +1,24 @@
+# STARTING THE INSTALLATION PROCESS
+echo "[1/5] STARTING THE INSTALLATION PROCESS"
+git clone https://github.com/TheLeopard65/Photon-Live-Chat-App.git
+cd Photon-Live-Chat-App
+
+# INSTALLING THE DEPENDENCIES
+echo "[2/5] INSTALLING THE DEPENDENCIES"
+sudo apt install $(cat Requirements.txt)
+
+# MAKING A QMAKE.STASH FILE
+echo "[3/5] MAKING A QMAKE.STASH FILE"
+qmake Photon-Compiler.pro
+
+# COMPILING THE SERVER & BINARY FILE
+echo "[4/5] COMPILING THE SERVER & BINARY FILE"
+make
+
+# COPYING THE FILES TO ROOT DIRECTORY
+echo "[5/5] COPYING THE FILES TO ROOT DIRECTORY"
+mv ./Server/Server .
+mv ./Client/Client .
+
+# INSTALLATION COMPLETED
+echo "### INSTALLATION COMPLETED"
