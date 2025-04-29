@@ -269,20 +269,22 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>220</y>
-      <width>451</width>
-      <height>81</height>
+      <x>630</x>
+      <y>490</y>
+      <width>111</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Monospace</family>
-      <pointsize>44</pointsize>
+      <pointsize>1</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgba(0, 0, 0, 32);</string>
+     <string notr="true">opacity: 0.2;</string>
     </property>
     <property name="text">
      <string>DISCONNECTED</string>
