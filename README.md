@@ -7,12 +7,12 @@
 A secure, real-time chat application designed to ensure privacy through robust end-to-end encryption, leveraging the power of Qt framework for cross-platform GUI development. OpenSSL is integrated to handle secure communication protocols & cryptographic operations. The application supports instant messaging with a focus on user data protection & seamless performance. Its architecture is built to resist eavesdropping, ensuring confidentiality across all transmitted messages.
 
 ## Features
-- **Secure Communication**: AES-128-CBC encryption for all messages
-- **Multi-Client Support**: Server handles multiple concurrent connections
-- **Persistent Chat History**: New clients receive previous messages
-- **Custom Thread Handling**: Dedicated threads for each client connection
-- **Modern GUI**: Clean interface with connection status indicators
-- **Cross-Platform**: Built with Qt for Windows/Linux/macOS compatibility
+- _**Secure Communication**_: AES-128-CBC encryption for all messages
+- _**Multi-Client Support**_: Server handles multiple concurrent connections
+- _**Persistent Chat History**_: New clients receive previous messages
+- _**Custom Thread Handling**_: Dedicated threads for each client connection
+- _**Modern GUI**_: Clean interface with connection status indicators
+- _**Cross-Platform**_: Built with Qt for Windows/Linux/macOS compatibility
 
 ## Installation
 ### Prerequisites
@@ -21,6 +21,8 @@ A secure, real-time chat application designed to ensure privacy through robust e
 
 ### Build Instructions
 ```bash
+git clone https://github.com/TheLeopard65/Photon-Live-Chat-App.git
+cd Photon-Live-Chat-App
 ./install.sh
 ```
 
@@ -38,10 +40,8 @@ A secure, real-time chat application designed to ensure privacy through robust e
 **Client Configuration:**
 1. Enter server IP address
 2. Choose a nickname
-3. Click "CONNECT"
+3. Click `CONNECT`
 4. Start secure chatting!
-
-Default Port: `7986`
 
 ## Security Implementation
 - AES-128-CBC encryption with PKCS#7 padding
@@ -100,6 +100,7 @@ Default Port: `7986`
   - QtNetwork
   - QtWidgets (Client)
   - OpenSSL Crypto Library
+- **Default Port**: `7986`
 
 ## Contributing
 We welcome contributions! Please follow these steps:
@@ -110,4 +111,4 @@ We welcome contributions! Please follow these steps:
 5. Open a Pull Request
 
 ## License
-Distributed under MIT License. See ![LICENSE](LICENSE) for more information.
+Distributed under MIT License. See [LICENSE](LICENSE) for more information.
