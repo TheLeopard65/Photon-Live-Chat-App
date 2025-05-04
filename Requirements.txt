@@ -1,9 +1,9 @@
 build-essential
 libssl-dev
-libssl3
+libssl3t64
 pkg-config
 qt6-base-dev
+designer-qt6
+qt6-tools-dev
 qt6-base-dev-tools
-qt6-network-dev
-qt6-widgets-dev
-qt6-base
+qt6-tools-dev-tools
